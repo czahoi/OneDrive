@@ -3,7 +3,6 @@
 rm -rf /usr/local/etc/OneDrive
 mkdir -p /usr/local/etc/OneDrive
 cd /usr/local/etc/OneDrive
-https://raw.githubusercontent.com/lm317379829/OneDrive/master/Business/onedrive
 wget --no-check-certificate -q -O json-parser "https://raw.githubusercontent.com/lm317379829/OneDrive/master/Business/json-parser"
 wget --no-check-certificate -q -O onedrive "https://raw.githubusercontent.com/lm317379829/OneDrive/master/Business/onedrive"
 wget --no-check-certificate -q -O onedrive-d "https://raw.githubusercontent.com/lm317379829/OneDrive/master/Business/onedrive-d"
