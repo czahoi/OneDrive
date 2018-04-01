@@ -1,7 +1,7 @@
 #!/bin/bash
 
 path="$3" 
-downloadpath='/home'
+downloadpath='/home' #下载目录
 
 if [ $2 -eq 0 ]
     then
