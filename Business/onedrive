@@ -28,13 +28,14 @@ export link_mode=0
 while [[ $# -ge 1 ]]; do
     case $1 in
         -h|--help)
-            echo "Usage: ${script_base_name} [OPTIONS] file1 [file2...]"
+            echo "Usage: ${script_base_name} [OPTIONS] file1"
             echo "       ${script_base_name}-d floder"
             echo ""
             echo "Options:"
             echo "  -d, --debug        Enable debug mode"
             echo "  -a, --authorize    Run authorization process"
             echo "  -f, --folder       Upload files into this remote folder"
+            echo "  -u, --update       Upload files into this remote folder after aria2 download complete"
             echo "  -c, --creat        Creat remote folder."
             echo "                     Directory names are separated with a slash,
             echo "                     e.g."rootFolder/subFolder"
@@ -53,12 +54,18 @@ while [[ $# -ge 1 ]]; do
         -f|--folder)
             shift
             folder_name="$1"
-            shift
             ;;
         -c|--creat)
             shift
             folder_name="$1"
             creat_folder=1
+            shift
+            ;;
+        -u|--update)
+            shift
+            folder_name="$2"
+            d_folder_name="$1"
+            update_folder=1
             shift
             ;;
         -r|--rename)
@@ -127,12 +134,20 @@ if [ "${link_mode}" == "1" ]; then
     exit 0
 fi
 
+
 if [ -n "${folder_name}" ]; then
 	# TODO Throw an error, if $2 contains illegal characters like double quotes
-    IFS='/' read -a folder_array <<< "${folder_name}"
+if [ "${update_folder}" == "1" ]; then
+    folder_name="${folder_name#*"$d_folder_name"}"
+fi
+if [ "${creat_folder}" == "1" ]; then
+    n_folder_name="${folder_name}"
+else 
+    n_folder_name="${folder_name%/*}"
+fi
+    IFS='/' read -a folder_array <<< "${n_folder_name}"
     api_folder_id=$(onedrive_get_or_create_folder "${folder_array[@]}")
 	exit_on_error
-
     [ "${creat_folder}" == "1" ] && exit 0
     export api_folder_id
     debug "api_folder_id is now '${api_folder_id}'"
@@ -155,4 +170,3 @@ if [ "${rename_mode}" == "0" ]; then
 else
     printf "%s\0" "${@}" | xargs -0 -n2 -P${max_upload_threads} bash -c 'start_upload "$1" "$2"' bash
 fi
-
