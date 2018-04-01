@@ -1,11 +1,19 @@
 # [OneDrive for Business on Bash]
+
 Fork自https://github.com/0oVicero0/OneDrive
+
 1.修改了 -f 参数下单文件不能上传，多文件下第一个文件识别为目录的bug。
+
 2.添加 -u 参数配合aria2下载，将所下载的文件或目录上传至onedrive根目录下，需配合autoupload.sh使用。
+
 思路见https://www.moerats.com/archives/482/
+
 eg: /home 为下载目录 /home/test 为下载文件的目录，内含下载的多个文件，test1.sh为其中一个。
+
 onedrive -u /home /home/test/test1.sh
+
 最终效果在onedrive上为/test/test1.sh
+
 配合autoupload.sh脚本可自动推送onedrive所下载的全部文件。
 
 -------------------------------------------------------------------------
