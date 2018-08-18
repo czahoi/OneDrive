@@ -31,7 +31,7 @@ https://moeclub.org/2017/03/17/24/
 
 # Install
 ```
-wget --no-check-certificate -q -O /tmp/OneDrive.sh "https://raw.githubusercontent.com/lm317379829/OneDrive/master/OneDrive.sh" && chmod +x /tmp/OneDrive.sh && bash /tmp/OneDrive.sh
+wget --no-check-certificate -q -O /tmp/OneDrive.sh "https://raw.githubusercontent.com/iiiiiii1/OneDrive/master/OneDrive.sh" && chmod +x /tmp/OneDrive.sh && bash /tmp/OneDrive.sh
 
 ```
 # Authorize
