@@ -17,12 +17,12 @@ IFS=$'\n';for file in `ls "$1"`
         else
             if [ "${1%/*}" = "$downloadpath" ] && [ $num -eq 1 ]
             then
-                onedrive "$1"
+                /usr/local/etc/OneDrive/onedrive "$1"
             elif [ $num -eq 1 ] 
             then
-                onedrive "$1/$file"
+                /usr/local/etc/OneDrive/onedrive "$1/$file"
             else
-                onedrive -u "$downloadpath" "$1/$file"
+                /usr/local/etc/OneDrive/onedrive -u "$downloadpath" "$1/$file"
                 fi
         fi
     done
